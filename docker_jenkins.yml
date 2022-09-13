@@ -33,6 +33,9 @@
       apt:
           name: ['docker-ce']
           state: latest
+          
+    - name: "Install Java"
+      shell: sudo apt install openjdk-11-jre
      
     - name: "Obtain Jenkins keyring"
       shell: curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
