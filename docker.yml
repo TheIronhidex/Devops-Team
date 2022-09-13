@@ -1,0 +1,35 @@
+- hosts: all
+  tasks:
+    - name: "Install apt-transport-https"
+      apt:
+        name: ['apt-transport-https']
+        state: latest
+    - name: "Install ca-certificatess"
+      apt:
+        name: ['ca-certificates']
+        state: latest
+    - name: "Install curl"
+      apt:
+        name: ['curl']
+        state: latest
+    - name: "Install software-properties-common"
+      apt:
+        name: ['software-properties-common']
+        state: latest
+        
+    - name: "Get GPG"
+      shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+      
+    - name: "Add Docker Repository"
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+      
+    - name: "Update packages"
+      apt:
+        update_cache: yes
+        
+    - name: "Install Docker"
+      apt:
+          name: ['docker-ce']
+          state: latest
